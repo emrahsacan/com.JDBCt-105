@@ -14,5 +14,5 @@ Feature: DB
 
 
     Examples:
-    |Id|
-    |52|
+    |ID|
+    |3|

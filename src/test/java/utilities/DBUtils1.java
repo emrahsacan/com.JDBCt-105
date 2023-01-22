@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class DBUtils1 {
 
-     static Connection connection;
+    static Connection connection;
     private static Statement statement;
     private static ResultSet resultSet;
 
@@ -17,6 +17,10 @@ public class DBUtils1 {
     /**
      * DBUtils.createConnection(); -> to connect to teh database
      */
+    //BU METHOD COK KULLANACAGIZ
+    //createConnection database e baglanmak icin. Burda url, username, password u kullanarak database baglaniyoruz
+    //Database e ne zaman baglanmak isterse bu methodu cagrabiliriz
+    //Bu method u data cok BeforeMethod icinde setup icin kullanacagiz
     public static void createConnection() {
 
         String url=ConfigReader.getProperty("db_credentials_url");
@@ -52,6 +56,9 @@ public class DBUtils1 {
     /**
      * DBUtils.executeQuery(String query); -> Execute the query and store is the result set object
      */
+    //BU METHODU COK KULLANACAGIZ
+    //Bu method DatabaDBUTilsse e baglandiktan sonra Yazilan query yi calistirmak icin
+    //Bu method da statement ve resultset objesini olusturup query run ediyoruz
 
     public static void executeQuery(String query) {
         try {
@@ -72,6 +79,8 @@ public class DBUtils1 {
 
 
     //    used to close the connectivity
+    //Database baglantisini sonlandirmak icin. Bu Mehtod u
+    // test tamamladiktan sonra kullaniriz
     public static void closeConnection() {
         try {
             if (resultSet != null) {
@@ -88,7 +97,11 @@ public class DBUtils1 {
         }
     }
 
-
+    //Sonraki 3 methodu sadece connection,statement,resultset kullanmak istedigimizde kullaniriz
+    //connection =>DBUtils.getConnection()
+    //statement => DBUtils.getResultset()
+    //resultSet => DBUtils.getResultset()
+    //getStatement method statement object i olusturmak icin
     public static Connection getConnection() {
         String url = "jdbc:sqlserver://184.168.194.58:1433;databaseName=crystalkeyhotels2;user=Ahmet_User;password=Ahmet123!";
         String username="Ahmet_User";
@@ -105,6 +118,7 @@ public class DBUtils1 {
 
 
     //used to get statement
+
     public static Statement getStatement() {
         try {
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
